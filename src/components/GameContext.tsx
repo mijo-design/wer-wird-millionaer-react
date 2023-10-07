@@ -1,4 +1,5 @@
 import React, { ReactNode, createContext, useContext, useReducer } from "react";
+import { questions } from "../questions/react";
 
 interface Question {
   question: string;
@@ -22,38 +23,7 @@ interface Action {
 
 export const initialState: State = {
   currentLevel: 0,
-  questions: [
-    {
-      question: "Which of the following is not a programming language?",
-      options: ["Python", "Java", "HTML", "C#"],
-      correctOption: 2, // HTML is not a programming language
-    },
-    {
-      question: "Which planet is known as the Red Planet?",
-      options: ["Earth", "Mars", "Jupiter", "Saturn"],
-      correctOption: 1, // Mars is the Red Planet
-    },
-    {
-      question: "Who wrote 'To be, or not to be'?",
-      options: [
-        "Charles Dickens",
-        "Jane Austen",
-        "William Shakespeare",
-        "Homer",
-      ],
-      correctOption: 2, // William Shakespeare wrote this line
-    },
-    {
-      question: "Which element has the chemical symbol 'O'?",
-      options: ["Osmium", "Oxygen", "Omnium", "Opium"],
-      correctOption: 1, // Oxygen has the chemical symbol 'O'
-    },
-    {
-      question: "What is the capital of France?",
-      options: ["Berlin", "Madrid", "Paris", "Lisbon"],
-      correctOption: 2, // Paris is the capital of France
-    },
-  ],
+  questions: questions,
   usedJokers: [],
   gameMode: "sicherheitsvariante",
   isGameOver: false,
