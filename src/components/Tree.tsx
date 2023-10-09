@@ -7,14 +7,25 @@ const Tree: React.FC = () => {
     <div>
       <h3>Money Tree</h3>
       <ul>
-        {state.moneyTree.map((amount, index) => (
-          <li
-            key={index}
-            style={{ color: index === state.currentLevel ? "green" : "black" }}
-          >
-            {index === state.currentLevel ? `--> ${amount}` : `${amount}`}
-          </li>
-        ))}
+        {state.moneyTree.map((amount, index) => {
+          let treeUi = `${amount}`;
+          if (state.checkpoints.includes(amount)) {
+            treeUi += " (Checkpoint)";
+          }
+          if (index === state.currentLevel) {
+            treeUi += " <-- You play now for";
+          }
+          return (
+            <li
+              key={index}
+              style={{
+                color: index === state.currentLevel ? "green" : "black",
+              }}
+            >
+              {treeUi}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

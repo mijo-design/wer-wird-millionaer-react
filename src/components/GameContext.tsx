@@ -14,6 +14,7 @@ interface State {
   gameMode: string;
   isGameOver: boolean;
   moneyTree: number[];
+  checkpoints: number[];
 }
 
 interface Action {
@@ -31,6 +32,7 @@ export const initialState: State = {
     100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000,
     250000, 500000, 1000000,
   ],
+  checkpoints: [500, 16000],
 };
 
 const GameContext = createContext<{
