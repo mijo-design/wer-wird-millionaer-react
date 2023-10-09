@@ -29,8 +29,8 @@ export const initialState: State = {
   gameMode: "sicherheitsvariante",
   isGameOver: false,
   moneyTree: [
-    100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000,
-    250000, 500000, 1000000,
+    50, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000,
+    500000, 1000000,
   ],
   checkpoints: [500, 16000],
 };
