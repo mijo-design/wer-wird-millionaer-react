@@ -1,5 +1,6 @@
 import React, { ReactNode, createContext, useContext, useReducer } from "react";
 import { questions } from "../questions/react";
+import { findPriceMoney } from "../services/findPriceMoney";
 
 interface Question {
   question: string;
@@ -15,6 +16,7 @@ interface State {
   isGameOver: boolean;
   moneyTree: number[];
   checkpoints: number[];
+  priceMoney: number;
 }
 
 interface Action {
@@ -33,6 +35,7 @@ export const initialState: State = {
     500000, 1000000,
   ],
   checkpoints: [500, 16000],
+  priceMoney: 0,
 };
 
 const GameContext = createContext<{
@@ -45,12 +48,21 @@ export const gameReducer = (state: State, action: Action): State => {
     case "SELECT_OPTION":
       const isCorrect =
         state.questions[state.currentLevel].correctOption === action.payload;
-      if (!isCorrect && state.gameMode === "sicherheitsvariante") {
-        return { ...state, isGameOver: true };
+      if (!isCorrect) {
+        return {
+          ...state,
+          priceMoney: findPriceMoney(
+            state.currentLevel,
+            state.moneyTree,
+            state.checkpoints
+          ),
+          isGameOver: true,
+        };
       }
       return {
         ...state,
         currentLevel: isCorrect ? state.currentLevel + 1 : state.currentLevel,
+        priceMoney: state.moneyTree[state.currentLevel],
       };
     case "USE_JOKER":
       if (!state.usedJokers.includes(action.payload)) {
