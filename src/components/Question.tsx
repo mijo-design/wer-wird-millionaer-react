@@ -1,6 +1,7 @@
 import React from "react";
 import { useGame } from "./GameContext";
 
+const questionPrefix = ["A", "B", "C", "D"];
 const Question: React.FC = () => {
   const { state, dispatch } = useGame();
 
@@ -14,7 +15,9 @@ const Question: React.FC = () => {
       <ul>
         {state.questions[state.currentLevel].options.map((option, index) => (
           <li key={index}>
-            <button onClick={() => handleOptionClick(index)}>{option}</button>
+            <button onClick={() => handleOptionClick(index)}>
+              {questionPrefix[index]}: {option}
+            </button>
           </li>
         ))}
       </ul>
