@@ -1,7 +1,7 @@
-export function audienceJoker(
+export const audienceJoker = (
   correctAnswer: 0 | 1 | 2 | 3,
   correctnessProbability: number
-): number[] {
+): number[] => {
   if (correctnessProbability < 0 || correctnessProbability > 1) {
     throw new Error("Correctness probability must be between 0 and 1");
   }
@@ -27,7 +27,7 @@ export function audienceJoker(
     Math.round((val / sum) * 100)
   );
   return adjustArrayToSum100(audienceVotes);
-}
+};
 
 function adjustArrayToSum100(numbers: number[]): number[] {
   if (numbers.length !== 4) {
